@@ -96,31 +96,12 @@ blrb <- function(mdf=mdf,today=Sys.Date()){ #病例日报统计函数
 }
 
 
-mrxz <- function(mdf=mdf,today=Sys.Date()){
-    #每日区县新增病例类型统计函数，程序待调整
-    xz.mdf <- mdf[as.Date(mdf$网络报告时间)==(today-2),]
-    xz.mdf.rq <- xz.mdf[c("区县","街道","性别","职业","发病日期","网络报告时间","病例分类","报告单位","cases")]
-    xz.mdf.melt <- melt(xz.mdf.rq,id=c("区县","街道","性别","职业","发病日期","网络报告时间","病例分类","报告单位"))
-    xz.hz.r <- cast(xz.mdf.melt,区县~病例分类,length)
-    # xz.hz.r$确诊 <- xz.hz.r$临床诊断病例+xz.hz.r$实验室确诊病例
-    xz.hz.r$确诊 <- xz.h z.r$确诊病例
-    names(xz.hz.r)[4]<- "疑似"
-    xz.qx.hz <- xz.hz.r[,c("区县","确诊","疑似")]
-    xz.qx.hz.colsum <- colSums(xz.qx.hz[2:3])
-    xz.qx.hz.colsum.df <- as.data.frame(t(xz.qx.hz.colsum))
-    xz.qx.hz.colsum.df$区县 <- "合计"
-    names(xz.qx.hz.colsum.df)[1:3] <- c("确诊","疑似","区县")
-    xz.qx.hz.final <- rbind(xz.qx.hz,xz.qx.hz.colsum.df)
-    write.csv(xz.qx.hz.final,paste0("区县每日新增病例分类",today,".csv"),row.names = FALSE)
-    shell.exec(paste0("D:/","区县每日新增病例分类",today,".csv"))
-}
-
 # 计算疫点状态表
 ydzt <- ydzt(mdf=mdf,currentdate=Sys.Date())
 ydzt
 
+# 计算每日新增病例
 blrb <- blrb(mdf=mdf,today=Sys.Date())
 blrb
 
-mrxz <- mrxz(mdf=mdf,today=Sys.Date())
-mrxz
+
