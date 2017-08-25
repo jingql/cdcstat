@@ -1,4 +1,7 @@
 
+##### 景钦隆，2017年8月25日撰写，广州市疾控中心  ##### 
+##### 此程序用于登革热病例统计、疫点状态统计
+
 mdf <- read.csv(file=file.choose(),header=TRUE,as.is=TRUE)
 
 library(plyr)
