@@ -1,11 +1,10 @@
 
 ##### 景钦隆，2017年8月25日撰写，广州市疾控中心  ##### 
 ##### 此程序用于登革热每日新增病例及累计统计
+##### 用法: blrb <- df_blrb(mdf=mdf,today=Sys.Date())
 
-mdf <- read.csv(file=file.choose(),header=TRUE,as.is=TRUE)
-# mdf <- read.csv("clipboard",header=T,as.is=T,sep="\t")
- 
-blrb <- function(mdf=mdf,today=Sys.Date()){ #病例日报统计函数
+library(reshape)
+df_blrb <- function(mdf=mdf,today=Sys.Date()){ #病例日报统计函数
     ##### 此程序用于截至前一日本地感染登革热病例情况 #####
     ##### 景钦隆，2014年7月26日撰写，广州市疾控中心  #####
     mdf$区县 <- substr(mdf$现住详细地址,1,3)
@@ -45,6 +44,4 @@ blrb <- function(mdf=mdf,today=Sys.Date()){ #病例日报统计函数
     return(final.final)
 }
 
-# 计算每日新增病例
-blrb <- blrb(mdf=mdf,today=Sys.Date())
-blrb
+

@@ -7,10 +7,10 @@
 ### 其中疫情状态、疫情强度、疫情趋势以15天（登革热最长潜伏期）为时间聚集性探测期限
 ### "暴发点"变量为年内是否曾达到暴发疫情标准（按发病日期计算，15天内发病超过3例）
 
-### 用法：ydzt <- ydzt(mdf=mdf,currentdate=Sys.Date())
+### 用法：ydzt <- df_ydzt(mdf=mdf,currentdate=Sys.Date())
 
 library(plyr)
-ydzt <- function(mdf=mdf,currentdate=Sys.Date()){ #疫点状态统计函数
+df_ydzt <- function(mdf=mdf,currentdate=Sys.Date()){ #疫点状态统计函数
     mdf.cf <- mdf[duplicated(mdf$姓名),]
     ##### 查找重名病例 ##########
     mdf.cf$姓名  ### 重名病例名单
