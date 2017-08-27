@@ -44,8 +44,8 @@ ydzt <- function(mdf=mdf,currentdate=Sys.Date()){ #疫点状态统计函数
                              }}
                          }
                       }
-                      if(nrow(jzcasesaggr)<=1 & jzcasesaggr[,2] < 3) {ybfd <- "否"}
-                      if(nrow(jzcasesaggr)<=1 & jzcasesaggr[,2] >= 3 ) {ybfd <- "是"}
+                      if(nrow(jzcasesaggr)<=1 & jzcasesaggr[1,2] < 3) {ybfd <- "否"}
+                      if(nrow(jzcasesaggr)<=1 & jzcasesaggr[1,2] >= 3 ) {ybfd <- "是"}
                       return(ybfd) 
              }
 
